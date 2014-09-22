@@ -18,6 +18,7 @@
     <orderEntry type="library" name="Parse-1.6.0" level="project" />
     <orderEntry type="library" name="android-support-v4" level="project" />
     <orderEntry type="library" name="google-play-services" level="project" />
+    <orderEntry type="library" name="wikitudesdk" level="project" />
   </component>
 </module>
 

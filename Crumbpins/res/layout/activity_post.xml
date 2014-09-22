@@ -32,6 +32,8 @@
             android:layout_alignParentEnd="true"
             android:text="@string/post" />
 
+
+
     <TextView
             android:id="@+id/character_count_textview"
             android:layout_width="wrap_content"
