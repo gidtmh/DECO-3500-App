@@ -36,7 +36,7 @@ public class Application extends android.app.Application {
         super.onCreate();
 
         ParseObject.registerSubclass(CrumbpinsPost.class);
-        Parse.initialize(this, "YNvg2JQR5r0RUbv7SUN8o6NhlCne20fDMfG46o7s", "JlvktlIKtbyFM8ZwbyDnCQIzkbE1EVx5DMRK73hz");
+        Parse.initialize(this, "24BSsH83x3KLI4ZxvhmB8K0dJNawgBBf7B2IdKBU", "jmLM9osjZgQEo9ZQC6P4Mdtc4XEJqqlvr3rMC0Fk");
 
         preferences = getSharedPreferences("com.parse.Crumbpins", Context.MODE_PRIVATE);
 
