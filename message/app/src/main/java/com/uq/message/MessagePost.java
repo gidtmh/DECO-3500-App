@@ -12,16 +12,11 @@ import com.parse.ParseUser;
 /**
  * Data model for a post.
  */
-
 @ParseClassName("Posts")
 public class MessagePost extends ParseObject {
     public String getText() {
         return getString("text");
     }
-
-    public String getImage(){ return getString("image");}
-
-    public void setImage(String value){ put("text", value); }
 
     public void setText(String value) {
         put("text", value);

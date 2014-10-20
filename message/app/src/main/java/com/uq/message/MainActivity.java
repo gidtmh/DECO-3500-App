@@ -8,13 +8,11 @@ import java.util.Set;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -38,10 +36,8 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.CancelableCallback;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
-
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -56,8 +52,6 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-
-import static com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 
 public class MainActivity extends FragmentActivity implements LocationListener,
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -191,7 +185,6 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                 return view;
             }
         };
-
 
         // Disable automatic loading when the adapter is attached to a view.
         postsQueryAdapter.setAutoload(false);
@@ -503,7 +496,6 @@ public class MainActivity extends FragmentActivity implements LocationListener,
     /*
      * Set up the query to update the map view
      */
-    private HashMap<Marker,MessagePost> eventMarkerMap;
     private void doMapQuery() {
         final int myUpdateNumber = ++mostRecentMapUpdate;
         Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
@@ -540,9 +532,6 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                 }
                 // Posts to show on the map
                 Set<String> toKeep = new HashSet<String>();
-                //Create Hashmap for storing adapter info
-                eventMarkerMap = new HashMap<Marker, MessagePost>();
-
                 // Loop through the results of the search
                 for (MessagePost post : objects) {
                     // Add this post to the list of map pins to keep
@@ -581,10 +570,6 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                                 oldMarker.remove();
                             }
                         }
-
-                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        vibrator.vibrate(500);
-
                         // Display a green marker with the post information
                         markerOpts =
                                 markerOpts.title(post.getText()).snippet(post.getUser().getUsername())
@@ -592,32 +577,12 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                     }
                     // Add a new marker
                     Marker marker = mapFragment.getMap().addMarker(markerOpts);
-                    eventMarkerMap.put(marker,post);
                     mapMarkers.put(post.getObjectId(), marker);
                     if (post.getObjectId().equals(selectedPostObjectId)) {
                         marker.showInfoWindow();
                         selectedPostObjectId = null;
                     }
                 }
-                mapFragment.getMap().setInfoWindowAdapter(new InfoWindowAdapter(){
-
-                    private final View window = getLayoutInflater().inflate(R.layout.adapter_activity,null);
-
-                    @Override
-                    public View getInfoWindow(Marker marker) {
-                        MessagePost newPost = eventMarkerMap.get(marker);
-                        // add retrieval methods here.
-
-
-
-                        return window;
-                    }
-
-                    @Override
-                    public View getInfoContents(Marker marker) {
-                        return null;
-                    }
-                });
                 // Clean up old markers.
                 cleanUpMarkers(toKeep);
             }

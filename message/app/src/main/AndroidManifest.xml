@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uq.message"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.uq.message">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -13,7 +11,6 @@
         android:protectionLevel="signature" >
     </permission>
 
-    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.uq.message.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -30,33 +27,36 @@
         android:required="true" />
 
     <application
-        android:name=".Application"
+        android:name="com.uq.message.Application"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.uq.message.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAEEkHz4vS_aLcxNTUD6ODdotq6FWKE55o" />
-        <meta-data
-            android:name="com.google.android.gms.version"
+
+        <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name="com.uq.message.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.uq.message.SignUpActivity"
             android:label="@string/title_activity_signup"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".DispatchActivity"
+            android:name="com.uq.message.DispatchActivity"
             android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,21 +65,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.uq.message.WelcomeActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo" />
         <activity
-            android:name=".PostActivity"
+            android:name="com.uq.message.PostActivity"
             android:label="@string/activity_post_title"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.uq.message.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity
-            android:name=".InfoAdapter"
-            android:label="@string/title_activity_info_adapter" >
-        </activity>
     </application>
 
 </manifest>
