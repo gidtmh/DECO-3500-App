@@ -17,6 +17,15 @@
         android:text="@string/post"
         android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 
+    <Button
+        android:id="@+id/create_article_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Article"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        android:layout_gravity="center_horizontal"
+        android:singleLine="true" />
+
     <fragment
         android:id="@+id/map_fragment"
         android:name="com.google.android.gms.maps.SupportMapFragment"

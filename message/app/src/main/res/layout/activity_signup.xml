@@ -7,11 +7,13 @@
     <ScrollView
         android:id="@+id/signup_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@drawable/abc_ab_solid_dark_holo">
 
         <LinearLayout
             style="@style/LoginFormContainer"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:background="@drawable/abc_ab_solid_dark_holo">
 
             <EditText
                 android:id="@+id/username_edit_text"
@@ -20,7 +22,8 @@
                 android:hint="@string/prompt_username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="#ffffffff" />
 
             <EditText
                 android:id="@+id/password_edit_text"
@@ -29,7 +32,8 @@
                 android:hint="@string/prompt_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:textColor="#ffffffff" />
 
             <EditText
                 android:id="@+id/password_again_edit_text"
@@ -41,17 +45,19 @@
                 android:singleLine="true"
                 android:imeActionId="@+id/edittext_action_signup"
                 android:imeActionLabel="@string/signup"
-                android:imeOptions="actionUnspecified" />
+                android:imeOptions="actionUnspecified"
+                android:textColor="#ffffffff" />
 
             <Button
                 android:id="@+id/action_button"
-                android:layout_width="wrap_content"
+                android:layout_width="364dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="@string/signup" />
+                android:text="@string/signup"
+                android:background="#ffd2ffe9" />
         </LinearLayout>
     </ScrollView>
 

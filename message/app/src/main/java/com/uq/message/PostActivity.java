@@ -22,9 +22,7 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-/**
- * Activity which displays a login screen to the user, offering registration as well.
- */
+
 public class PostActivity extends Activity {
     // UI references.
     private EditText postEditText;

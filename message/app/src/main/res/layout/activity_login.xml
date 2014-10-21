@@ -7,11 +7,12 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@drawable/abc_ab_solid_dark_holo">
 
         <LinearLayout
             style="@style/LoginFormContainer"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/username"
@@ -20,7 +21,10 @@
                 android:hint="@string/prompt_username"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:autoText="false"
+                android:selectAllOnFocus="true"
+                android:textColor="#fffefff9" />
 
             <EditText
                 android:id="@+id/password"
@@ -32,17 +36,19 @@
                 android:singleLine="true"
                 android:imeActionId="@+id/edittext_action_login"
                 android:imeActionLabel="@string/login"
-                android:imeOptions="actionUnspecified" />
+                android:imeOptions="actionUnspecified"
+                android:textColor="#fffdfffb" />
 
             <Button
                 android:id="@+id/action_button"
-                android:layout_width="wrap_content"
+                android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="16dp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:background="#fff6fff7" />
         </LinearLayout>
     </ScrollView>
 

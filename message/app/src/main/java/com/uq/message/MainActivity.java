@@ -8,11 +8,14 @@ import java.util.Set;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -36,6 +39,7 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.CancelableCallback;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -47,6 +51,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.GoogleMap;
+import static com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
@@ -230,6 +236,17 @@ public class MainActivity extends FragmentActivity implements LocationListener,
             public void onCameraChange(CameraPosition position) {
                 // When the camera changes, update the query
                 doMapQuery();
+            }
+        });
+
+        // Set up a button for the create Article
+
+        Button btn = (Button) findViewById(R.id.create_article_button);
+        btn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+                myWebLink.setData(Uri.parse("http://laelaps.me/dev/MiB_Site/post.html"));
+                startActivity(myWebLink);
             }
         });
 
@@ -493,9 +510,15 @@ public class MainActivity extends FragmentActivity implements LocationListener,
         }
     }
 
+    // Setting up the adapter for stuff
+
+
+
     /*
      * Set up the query to update the map view
      */
+    private HashMap<Marker,MessagePost> eventMarkerMap;
+
     private void doMapQuery() {
         final int myUpdateNumber = ++mostRecentMapUpdate;
         Location myLoc = (currentLocation == null) ? lastLocation : currentLocation;
@@ -570,6 +593,10 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                                 oldMarker.remove();
                             }
                         }
+
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(500);
+
                         // Display a green marker with the post information
                         markerOpts =
                                 markerOpts.title(post.getText()).snippet(post.getUser().getUsername())
@@ -577,11 +604,40 @@ public class MainActivity extends FragmentActivity implements LocationListener,
                     }
                     // Add a new marker
                     Marker marker = mapFragment.getMap().addMarker(markerOpts);
+//                   eventMarkerMap.put(marker,post);
                     mapMarkers.put(post.getObjectId(), marker);
                     if (post.getObjectId().equals(selectedPostObjectId)) {
                         marker.showInfoWindow();
                         selectedPostObjectId = null;
                     }
+
+//                    mapFragment.getMap().setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter(){
+
+/*                        private final View window = getLayoutInflater().inflate(R.layout.adapter_activity,null);
+
+                        @Override
+                        public View getInfoWindow(Marker marker) {
+                            MessagePost newPost = eventMarkerMap.get(marker);
+                            // add retrieval methods here.
+
+                            //newPost = markerOpts.getTitle();
+
+
+
+
+
+
+
+
+
+                            return window;
+                        }*/
+
+                        /*@Override
+                        public View getInfoContents(Marker marker) {
+                            return null;
+                        }
+                    });*/
                 }
                 // Clean up old markers.
                 cleanUpMarkers(toKeep);
